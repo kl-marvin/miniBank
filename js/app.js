@@ -4,11 +4,16 @@ let balance = document.getElementById('balance');
 let operation = document.getElementById('op');
 let balanceTag = document.getElementById('tag');
 
+// Date Format 
 
 let date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth();
-
+if(month < 10){
+    month = '0'+ month;
+}else{
+    month;
+};
 
 const greeting = setTimeout(() => {
     owner.style.color = 'green';
@@ -28,7 +33,7 @@ class BankAccount{
         if(amount = parseInt(prompt("Saisissez votre montant :",))){
             let updatedBalance = this.balance += amount;
             balance.innerHTML = updatedBalance + ' €';
-            operation.insertAdjacentHTML('afterbegin', '<span id="deposit">(0' + month + '/' + year + ') Vous avez ajouté la somme de ' + amount + '€ sur votre compte. Nouveau solde ' + updatedBalance + '€.</span><br>');
+            operation.insertAdjacentHTML('afterbegin', '<span id="deposit">('+ month + '/' + year + ') Vous avez ajouté la somme de ' + amount + '€ sur votre compte. Nouveau solde ' + updatedBalance + '€.</span><br>');
         }
     }
 
@@ -36,7 +41,7 @@ class BankAccount{
         if((amount = parseInt(prompt("Saisissez le montant à rétirer:"))) && this.balance > amount){
             let updatedBalance = this.balance -= amount;
             balance.innerHTML = updatedBalance + ' €';
-            operation.insertAdjacentHTML('afterbegin', '<span id="withdraw">(0' + month + '/' + year + ') Vous avez retiré la somme de ' + amount + '€ sur votre compte. Nouveau solde ' + updatedBalance + '€.</span><br>');
+            operation.insertAdjacentHTML('afterbegin', '<span id="withdraw">(' + month + '/' + year + ') Vous avez retiré la somme de ' + amount + '€ sur votre compte. Nouveau solde ' + updatedBalance + '€.</span><br>');
         }else if(this.balance < amount){
             alert('Retrait impossible. Fonds insufisants');
         }
@@ -44,9 +49,7 @@ class BankAccount{
 
     showBalance(){
         balance.insertAdjacentHTML('afterbegin', this.balance);
-
     }
-
 } 
 
 
